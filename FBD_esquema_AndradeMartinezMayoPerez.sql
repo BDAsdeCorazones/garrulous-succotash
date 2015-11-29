@@ -6,16 +6,16 @@
 -- -ejecutar script en contenedor 
 -- 	cat FBD_esquema_AndradeMartinezMayoPerez.sql |  docker exec -i postgres psql -Upostgres
 DROP DATABASE IF EXISTS t_air;
-DROP USER IF EXISTS manuel;
+DROP USER IF EXISTS admin;
 
-CREATE USER manuel WITH PASSWORD 'jw8s0F4' CREATEDB;
+CREATE USER admin WITH PASSWORD 'jw8s0F4' CREATEDB;
 
 CREATE OR REPLACE FUNCTION sha1(bytea) RETURN TEXT AS $$
 SELECT encode(digest($1, 'sha1'), 'hex')
 $$ LANGUAGE SQL strict inmutable;
 
 CREATE DATABASE t_air
-	WITH OWNER = manuel
+	WITH OWNER = admin
 	ENCODING = 'UTF8'
 	TABLESPACE = pg_default
 	CONNECTION LIMIT = -1;
