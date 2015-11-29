@@ -49,7 +49,7 @@ CREATE TABLE asiento (
 );
 
 CREATE TABLE cliente (
-    id_cliente integer PRIMARY KEY,
+    id_cliente serial PRIMARY KEY,
     nombres_completo text NOT NULL,
     genero boolean NOT NULL,
     fecha_nacimiento date NOT NULL,
@@ -67,7 +67,7 @@ CREATE TABLE vendedor (
 );
 
 CREATE TABLE venta (
-    id_venta integer PRIMARY KEY,
+    id_venta serial PRIMARY KEY,
     flight_number text NOT NULL,
     asiento text NOT NULL,
     fecha timestamp NOT NULL,
