@@ -42,38 +42,28 @@ CREATE TABLE asiento (
     CONSTRAINT posicion_valida CHECK ((char_length(posicion) > 2) AND (char_length(posicion) < 5))
 );
 
--- CREATE TABLE venta (
---     flight_number integer PRIMARY KEY,
---     iata_origen text NOT NULL,
---     iata_destino text NOT NULL,
---     fecha_salida timestamp with timezone NOT NULL,
---     fecha_llegada timestamp with timezone NOT NULL,
---     aerolinea text NOT NULL,
---     modelo_avion integer,
---     CONSTRAINT not_local CHECK ((iata_origen <> iata_destino))
--- );
+CREATE TABLE cliente (
+    id_cliente integer PRIMARY KEY,
+    nombres_completo text NOT NULL,
+    genero boolean NOT NULL,
+    fecha_nacimiento date NOT NULL,
+    correo text NOT NULL,
+    telefono text,
+    UNIQUE(correo),
+    CONSTRAINT children_detector CHECK (date_part('years', interval age(fecha_nacimiento))) > 2),
+);
 
--- CREATE TABLE cliente (
---     flight_number integer PRIMARY KEY,
---     iata_origen text NOT NULL,
---     iata_destino text NOT NULL,
---     fecha_salida timestamp with timezone NOT NULL,
---     fecha_llegada timestamp with timezone NOT NULL,
---     aerolinea text NOT NULL,
---     modelo_avion integer,
---     CONSTRAINT not_local CHECK ((iata_origen <> iata_destino))
--- );
+CREATE TABLE vendedor (
+    rfc text PRIMARY KEY,
+    nombres_completo text NOT NULL,
+    telefono text NOT NULL
+);
 
--- CREATE TABLE vendedor (
---     flight_number integer PRIMARY KEY,
---     iata_origen text NOT NULL,
---     iata_destino text NOT NULL,
---     fecha_salida timestamp with timezone NOT NULL,
---     fecha_llegada timestamp with timezone NOT NULL,
---     aerolinea text NOT NULL,
---     modelo_avion integer,
---     CONSTRAINT not_local CHECK ((iata_origen <> iata_destino))
--- );
-
-
-
+CREATE TABLE venta (
+    id_venta integer PRIMARY KEY,
+    flight_number text REFERENCES asiento(flight_number),
+    asiento text REFERENCES asiento(posicion),
+    fecha timestamp NOT NULL,
+    cliente integer REFERENCES cliente(id_cliente),
+    vendedor text REFERENCES vendedor(rfc),
+);
