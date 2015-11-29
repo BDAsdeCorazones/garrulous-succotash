@@ -28,15 +28,17 @@ CREATE TABLE vuelo (
     fecha_llegada timestamp NOT NULL,
     aerolinea text NOT NULL,
     modelo_avion text,
+    UNIQUE(flight_number),
     CONSTRAINT not_local CHECK ((iata_origen <> iata_destino))
 );
 
 CREATE TABLE asiento (
     flight_number text REFERENCES vuelo(flight_number),
-    categoria text,
+    posicion text NOT NULL ,
+    categoria text NOT NULL,
     costo real NOT NULL,
-    posicion text PRIMARY KEY ,
     disponible boolean NOT NULL,
+    UNIQUE(flight_number, posicion),
     CONSTRAINT categoria_valida CHECK ((char_length(posicion) > 2)),
     CONSTRAINT costo_negativo CHECK (costo > 0),
     CONSTRAINT posicion_valida CHECK ((char_length(posicion) > 2) AND (char_length(posicion) < 5))
@@ -49,8 +51,8 @@ CREATE TABLE cliente (
     fecha_nacimiento date NOT NULL,
     correo text NOT NULL,
     telefono text,
-    UNIQUE(correo),
-    CONSTRAINT children_detector CHECK (date_part('years', interval age(fecha_nacimiento))) > 2),
+    UNIQUE(correo)
+    --CONSTRAINT children_detector CHECK (date_part('years', interval age(fecha_nacimiento))) > 2),
 );
 
 CREATE TABLE vendedor (
@@ -61,9 +63,10 @@ CREATE TABLE vendedor (
 
 CREATE TABLE venta (
     id_venta integer PRIMARY KEY,
-    flight_number text REFERENCES asiento(flight_number),
-    asiento text REFERENCES asiento(posicion),
+    flight_number text NOT NULL,
+    asiento text NOT NULL,
     fecha timestamp NOT NULL,
     cliente integer REFERENCES cliente(id_cliente),
     vendedor text REFERENCES vendedor(rfc),
+    FOREIGN KEY (flight_number, asiento) REFERENCES asiento (flight_number, posicion)
 );
