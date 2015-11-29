@@ -31,7 +31,7 @@ CREATE TABLE vuelo (
     fecha_salida timestamp NOT NULL,
     fecha_llegada timestamp NOT NULL,
     aerolinea text NOT NULL,
-    modelo_avion text,
+    modelo_avion text NOT NULL,
     UNIQUE(flight_number),
     CONSTRAINT not_local CHECK ((iata_origen <> iata_destino))
 );
