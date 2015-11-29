@@ -10,6 +10,10 @@ DROP USER IF EXISTS manuel;
 
 CREATE USER manuel WITH PASSWORD 'jw8s0F4' CREATEDB;
 
+CREATE OR REPLACE FUNCTION sha1(bytea) RETURN TEXT AS $$
+SELECT encode(digest($1, 'sha1'), 'hex')
+$$ LANGUAGE SQL strict inmutable;
+
 CREATE DATABASE t_air
 	WITH OWNER = manuel
 	ENCODING = 'UTF8'
@@ -39,9 +43,9 @@ CREATE TABLE asiento (
     costo real NOT NULL,
     disponible boolean NOT NULL,
     UNIQUE(flight_number, posicion),
-    CONSTRAINT categoria_valida CHECK ((char_length(posicion) > 2)),
+    CONSTRAINT categoria_valida CHECK ((char_length(categoria) >= 3)),
     CONSTRAINT costo_negativo CHECK (costo > 0),
-    CONSTRAINT posicion_valida CHECK ((char_length(posicion) > 2) AND (char_length(posicion) < 5))
+    CONSTRAINT posicion_valida CHECK ((char_length(posicion) >= 2) AND (char_length(posicion) < 5))
 );
 
 CREATE TABLE cliente (
@@ -58,7 +62,8 @@ CREATE TABLE cliente (
 CREATE TABLE vendedor (
     rfc text PRIMARY KEY,
     nombres_completo text NOT NULL,
-    telefono text NOT NULL
+    telefono text NOT NULL,
+    password text NOT NULL
 );
 
 CREATE TABLE venta (
