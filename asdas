@@ -1,0 +1,1111 @@
+-- Executing query:
+SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente;
+Total query runtime: 41 ms.
+94 rows retrieved.
+
+-- Executing query:
+SELECT *  FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT c.nombre_completo FROM (SELECT c.nombre_completo FROM (venta)v LEFT JOIN (cliente) c ON vcliente=c.id_cliente ) WHERE c.nombre_completo ='g%';
+ERROR:  subquery in FROM must have an alias
+LINE 1: SELECT *  FROM (SELECT * FROM venta v LEFT JOIN cliente w ON...
+                       ^
+HINT:  For example, FROM (SELECT ...) [AS] foo.
+
+********** Error **********
+
+ERROR: subquery in FROM must have an alias
+SQL state: 42601
+Hint: For example, FROM (SELECT ...) [AS] foo.
+Character: 16
+
+-- Executing query:
+
+
+SELECT c.nombre_completo FROM (SELECT c.nombre_completo FROM (venta)v LEFT JOIN (cliente) c ON vcliente=c.id_cliente ) WHERE c.nombre_completo ='g%';
+ERROR:  syntax error at or near ")"
+LINE 3: ...ompleto FROM (SELECT c.nombre_completo FROM (venta)v LEFT JO...
+                                                             ^
+
+********** Error **********
+
+ERROR: syntax error at or near ")"
+SQL state: 42601
+Character: 70
+
+-- Executing query:
+SELECT *  FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT c.nombre_completo FROM (SELECT c.nombre_completo FROM (venta) v LEFT JOIN (cliente) c ON vcliente=c.id_cliente ) WHERE c.nombre_completo ='g%';
+ERROR:  subquery in FROM must have an alias
+LINE 1: SELECT *  FROM (SELECT * FROM venta v LEFT JOIN cliente w ON...
+                       ^
+HINT:  For example, FROM (SELECT ...) [AS] foo.
+
+********** Error **********
+
+ERROR: subquery in FROM must have an alias
+SQL state: 42601
+Hint: For example, FROM (SELECT ...) [AS] foo.
+Character: 16
+
+-- Executing query:
+SELECT *  FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT c.nombre_completo FROM (SELECT c.nombre_completo FROM (venta) v LEFT JOIN (cliente) c ON vcliente=c.id_cliente ) g WHERE c.nombre_completo ='g%';
+ERROR:  subquery in FROM must have an alias
+LINE 1: SELECT *  FROM (SELECT * FROM venta v LEFT JOIN cliente w ON...
+                       ^
+HINT:  For example, FROM (SELECT ...) [AS] foo.
+
+********** Error **********
+
+ERROR: subquery in FROM must have an alias
+SQL state: 42601
+Hint: For example, FROM (SELECT ...) [AS] foo.
+Character: 16
+
+-- Executing query:
+
+
+SELECT c.nombre_completo FROM (SELECT c.nombre_completo FROM (venta) v LEFT JOIN (cliente) c ON vcliente=c.id_cliente ) WHERE c.nombre_completo ='g%';
+ERROR:  syntax error at or near ")"
+LINE 3: ...ompleto FROM (SELECT c.nombre_completo FROM (venta) v LEFT J...
+                                                             ^
+
+********** Error **********
+
+ERROR: syntax error at or near ")"
+SQL state: 42601
+Character: 70
+
+-- Executing query:
+
+
+SELECT c.nombre_completo FROM (SELECT c.nombre_completo FROM venta v LEFT JOIN cliente c ON vcliente=c.id_cliente ) WHERE c.nombre_completo ='g%';
+ERROR:  subquery in FROM must have an alias
+LINE 3: SELECT c.nombre_completo FROM (SELECT c.nombre_completo FROM...
+                                      ^
+HINT:  For example, FROM (SELECT ...) [AS] foo.
+
+********** Error **********
+
+ERROR: subquery in FROM must have an alias
+SQL state: 42601
+Hint: For example, FROM (SELECT ...) [AS] foo.
+Character: 33
+
+-- Executing query:
+
+
+SELECT c.nombre_completo FROM (SELECT * FROM venta v LEFT JOIN cliente c ON vcliente=c.id_cliente ) WHERE c.nombre_completo ='g%';
+ERROR:  subquery in FROM must have an alias
+LINE 3: SELECT c.nombre_completo FROM (SELECT * FROM venta v LEFT JO...
+                                      ^
+HINT:  For example, FROM (SELECT ...) [AS] foo.
+
+********** Error **********
+
+ERROR: subquery in FROM must have an alias
+SQL state: 42601
+Hint: For example, FROM (SELECT ...) [AS] foo.
+Character: 33
+
+-- Executing query:
+
+
+SELECT c.nombre_completo FROM d (SELECT * FROM venta v LEFT JOIN cliente c ON vcliente=c.id_cliente ) WHERE c.nombre_completo ='g%';
+ERROR:  syntax error at or near "SELECT"
+LINE 3: SELECT c.nombre_completo FROM d (SELECT * FROM venta v LEFT ...
+                                         ^
+
+********** Error **********
+
+ERROR: syntax error at or near "SELECT"
+SQL state: 42601
+Character: 36
+
+-- Executing query:
+
+
+SELECT c.nombre_completo FROM (SELECT * FROM venta v LEFT JOIN cliente c ON vcliente=c.id_cliente ) WHERE c.nombre_completo ='g%';
+ERROR:  subquery in FROM must have an alias
+LINE 3: SELECT c.nombre_completo FROM (SELECT * FROM venta v LEFT JO...
+                                      ^
+HINT:  For example, FROM (SELECT ...) [AS] foo.
+
+********** Error **********
+
+ERROR: subquery in FROM must have an alias
+SQL state: 42601
+Hint: For example, FROM (SELECT ...) [AS] foo.
+Character: 33
+
+-- Executing query:
+
+
+SELECT d.nombre_completo FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente ) d  WHERE c.nombre_completo ='g%';
+ERROR:  column d.nombre_completo does not exist
+LINE 3: SELECT d.nombre_completo FROM (SELECT * FROM venta v LEFT JO...
+               ^
+
+********** Error **********
+
+ERROR: column d.nombre_completo does not exist
+SQL state: 42703
+Character: 10
+
+-- Executing query:
+
+
+SELECT d.nombre_completo FROM (SELECT c.nombre_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente ) d  WHERE c.nombre_completo ='g%';
+ERROR:  column c.nombre_completo does not exist
+LINE 3: SELECT d.nombre_completo FROM (SELECT c.nombre_completo FROM...
+                                              ^
+
+********** Error **********
+
+ERROR: column c.nombre_completo does not exist
+SQL state: 42703
+Character: 41
+
+-- Executing query:
+
+
+SELECT d.nombre_completo FROM (SELECT nombre_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente ) d  WHERE c.nombre_completo ='g%';
+ERROR:  column "nombre_completo" does not exist
+LINE 3: SELECT d.nombre_completo FROM (SELECT nombre_completo FROM v...
+                                              ^
+
+********** Error **********
+
+ERROR: column "nombre_completo" does not exist
+SQL state: 42703
+Character: 41
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT d.nombre_completo FROM (SELECT nombre_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente ) d  WHERE c.nombre_completo ='g%';
+ERROR:  column "nombre_completo" does not exist
+LINE 4: SELECT d.nombre_completo FROM (SELECT nombre_completo FROM v...
+                                              ^
+
+********** Error **********
+
+ERROR: column "nombre_completo" does not exist
+SQL state: 42703
+Character: 113
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+
+Total query runtime: 32 ms.
+94 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+(SELECT nombre_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )';
+ERROR:  unterminated quoted string at or near "';"
+LINE 4: ...OM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )';
+                                                                     ^
+
+********** Error **********
+
+ERROR: unterminated quoted string at or near "';"
+SQL state: 42601
+Character: 159
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+(SELECT nombre_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente );
+ERROR:  column "nombre_completo" does not exist
+LINE 4: (SELECT nombre_completo FROM venta v LEFT JOIN cliente c ON ...
+                ^
+
+********** Error **********
+
+ERROR: column "nombre_completo" does not exist
+SQL state: 42703
+Character: 83
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+(SELECT c.nombre_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente );
+ERROR:  column c.nombre_completo does not exist
+LINE 4: (SELECT c.nombre_completo FROM venta v LEFT JOIN cliente c O...
+                ^
+
+********** Error **********
+
+ERROR: column c.nombre_completo does not exist
+SQL state: 42703
+Character: 83
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+(SELECT nombre_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente );
+ERROR:  column "nombre_completo" does not exist
+LINE 4: (SELECT nombre_completo FROM venta v LEFT JOIN cliente c ON ...
+                ^
+
+********** Error **********
+
+ERROR: column "nombre_completo" does not exist
+SQL state: 42703
+Character: 83
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+(SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente );
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 31 ms.
+94 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo FROM (SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo='%g' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 33 ms.
+0 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo FROM (SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo='%' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 33 ms.
+0 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo FROM (SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo='%g' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 32 ms.
+0 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo FROM (SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo='%' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 33 ms.
+0 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+(SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c  ;
+ERROR:  syntax error at or near "c"
+LINE 4: ... venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c  ;
+                                                                   ^
+
+********** Error **********
+
+ERROR: syntax error at or near "c"
+SQL state: 42601
+Character: 160
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+(SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )  ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 32 ms.
+94 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo FROM (SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo='G%' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 32 ms.
+0 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo FROM (SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo='%G%' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 31 ms.
+0 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo FROM (SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE '%G%' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 33 ms.
+11 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo FROM (SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 34 ms.
+5 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo, id_venta FROM (SELECT nombres_completo FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+ERROR:  column "id_venta" does not exist
+LINE 4: SELECT nombres_completo, id_venta FROM (SELECT nombres_compl...
+                                 ^
+
+********** Error **********
+
+ERROR: column "id_venta" does not exist
+SQL state: 42703
+Character: 100
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 32 ms.
+5 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo, id_venta,fecha FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+
+
+query result with 94 rows discarded.
+
+
+Total query runtime: 24 ms.
+5 rows retrieved.
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta v left join asiento a on v.flight_number = a.flight_number) WHERE (\
+year from v.fecha) = 2015 and
+case when a.costo > 500 then 'Autorizado'
+     when a.costo > 1300 then 'Verificado'
+     when c.genero = true then 'Checar'
+     else 'proceso'
+ end
+)
+ERROR:  syntax error at or near "WHERE"
+LINE 1: ...oin asiento a on v.flight_number = a.flight_number) WHERE (\
+                                                               ^
+********** Error **********
+
+ERROR: syntax error at or near "WHERE"
+SQL state: 42601
+Character: 136
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta v left join asiento a on v.flight_number = a.flight_number) and (extract
+year from v.fecha) = 2015 and
+case when a.costo > 500 then 'Autorizado'
+     when a.costo > 1300 then 'Verificado'
+     when c.genero = true then 'Checar'
+     else 'proceso'
+ end
+)
+ERROR:  syntax error at or near "year"
+LINE 2: year from v.fecha) = 2015 and
+        ^
+
+********** Error **********
+
+ERROR: syntax error at or near "year"
+SQL state: 42601
+Character: 149
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta v left join asiento a on v.flight_number = a.flight_number) and date_part('year', v.fecha) and
+case when a.costo > 500 then 'Autorizado'
+     when a.costo > 1300 then 'Verificado'
+     when c.genero = true then 'Checar'
+     else 'proceso'
+ end
+)
+ERROR:  syntax error at or near ")"
+LINE 7: )
+        ^
+
+********** Error **********
+
+ERROR: syntax error at or near ")"
+SQL state: 42601
+Character: 321
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta v left join asiento a on v.flight_number = a.flight_number) and date_part('year', v.fecha) and
+case when a.costo > 500 then 'Autorizado'
+     when a.costo > 1300 then 'Verificado'
+     when c.genero = true then 'Checar'
+     else 'proceso'
+ end
+
+ERROR:  missing FROM-clause entry for table "v"
+LINE 1: ...t_number = a.flight_number) and date_part('year', v.fecha) a...
+                                                             ^
+
+********** Error **********
+
+ERROR: missing FROM-clause entry for table "v"
+SQL state: 42P01
+Character: 158
+
+-- Executing query:
+select * from (select * from  cliente c where id_cliente in (select id_cliente from venta v left join asiento a on v.flight_number = a.flight_numbe where date_part('year', v.fecha) = 2015 ) 
+ERROR:  syntax error at end of input
+LINE 1: ... = a.flight_numbe where date_part('year', v.fecha) = 2015 ) 
+                                                                       ^
+
+********** Error **********
+
+ERROR: syntax error at end of input
+SQL state: 42601
+Character: 191
+
+-- Executing query:
+select * from (select * from  cliente c where id_cliente in (select id_cliente from venta v left join asiento a on v.flight_number = a.flight_numbe where date_part('year', v.fecha) = 2015 ) c
+ERROR:  syntax error at or near "c"
+LINE 1: ...= a.flight_numbe where date_part('year', v.fecha) = 2015 ) c
+                                                                      ^
+
+********** Error **********
+
+ERROR: syntax error at or near "c"
+SQL state: 42601
+Character: 191
+
+-- Executing query:
+select * from (select * from  cliente c where id_cliente in (select id_cliente from venta where date_part('year', v.fecha) = 2015)
+ERROR:  syntax error at end of input
+LINE 1: ..._cliente from venta where date_part('year', v.fecha) = 2015)
+                                                                       ^
+
+********** Error **********
+
+ERROR: syntax error at end of input
+SQL state: 42601
+Character: 131
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta where date_part('year', v.fecha) = 2015
+ERROR:  syntax error at end of input
+LINE 1: ...d_cliente from venta where date_part('year', v.fecha) = 2015
+                                                                       ^
+
+********** Error **********
+
+ERROR: syntax error at end of input
+SQL state: 42601
+Character: 115
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta where date_part(year, v.fecha) = 2015
+ERROR:  syntax error at end of input
+LINE 1: ... id_cliente from venta where date_part(year, v.fecha) = 2015
+                                                                       ^
+
+********** Error **********
+
+ERROR: syntax error at end of input
+SQL state: 42601
+Character: 113
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta where date_part(year, fecha) = 2015)
+ERROR:  column "year" does not exist
+LINE 1: ... in (select id_cliente from venta where date_part(year, fech...
+                                                             ^
+
+********** Error **********
+
+ERROR: column "year" does not exist
+SQL state: 42703
+Character: 92
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta where extract(year, fecha) = 2015)
+ERROR:  syntax error at or near ","
+LINE 1: ...n (select id_cliente from venta where extract(year, fecha) =...
+                                                             ^
+
+********** Error **********
+
+ERROR: syntax error at or near ","
+SQL state: 42601
+Character: 94
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta where extract(year from fecha) = 2015)
+Total query runtime: 17 ms.
+150 rows retrieved.
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015)
+Total query runtime: 17 ms.
+150 rows retrieved.
+
+-- Executing query:
+select * from  cliente c where id_cliente in (select id_cliente from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015 and
+case when a.costo > 500 then 'Autorizado'
+     when a.costo > 1300 then 'Verificado'
+     when c.genero = true then 'Checar'
+     else 'proceso'
+     )
+ end
+
+)
+ERROR:  syntax error at or near ")"
+LINE 6:      )
+             ^
+
+********** Error **********
+
+ERROR: syntax error at or near ")"
+SQL state: 42601
+Character: 328
+
+-- Executing query:
+select id_cliente from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015 and
+case when a.costo > 500 then 'Autorizado'
+     when a.costo > 1300 then 'Verificado'
+     when c.genero = true then 'Checar'
+     else 'proceso'
+ end
+
+
+ERROR:  column "id_cliente" does not exist
+LINE 1: select id_cliente from venta v left join asiento a on a.flig...
+               ^
+
+********** Error **********
+
+ERROR: column "id_cliente" does not exist
+SQL state: 42703
+Character: 8
+
+-- Executing query:
+select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015 and
+case when a.costo > 500 then 'Autorizado'
+     when a.costo > 1300 then 'Verificado'
+     when c.genero = true then 'Checar'
+     else 'proceso'
+ end
+
+
+ERROR:  missing FROM-clause entry for table "c"
+LINE 4:      when c.genero = true then 'Checar'
+                  ^
+
+********** Error **********
+
+ERROR: missing FROM-clause entry for table "c"
+SQL state: 42P01
+Character: 218
+
+-- Executing query:
+select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015 and
+case when a.costo > 500 then 'Autorizado'
+     when a.costo > 1300 then 'Verificado'
+     else 'proceso'
+ end
+
+
+ERROR:  argument of AND must be type boolean, not type text
+LINE 2: case when a.costo > 500 then 'Autorizado'
+        ^
+
+********** Error **********
+
+ERROR: argument of AND must be type boolean, not type text
+SQL state: 42804
+Character: 123
+
+-- Executing query:
+select (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015 ) c , 
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     else 'proceso'
+ end
+
+
+
+ERROR:  subquery must return only one column
+LINE 1: select (select * from venta v left join asiento a on a.fligh...
+               ^
+
+********** Error **********
+
+ERROR: subquery must return only one column
+SQL state: 42601
+Character: 8
+
+-- Executing query:
+select * from (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015 ) c , 
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     else 'proceso'
+ end
+
+
+
+ERROR:  syntax error at or near "case"
+LINE 2: case when c.costo > 500 then 'Autorizado'
+        ^
+
+********** Error **********
+
+ERROR: syntax error at or near "case"
+SQL state: 42601
+Character: 141
+
+-- Executing query:
+select * (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015 ) c , 
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     else 'proceso'
+ end
+
+
+
+ERROR:  syntax error at or near "("
+LINE 1: select * (select * from venta v left join asiento a on a.fli...
+                 ^
+
+********** Error **********
+
+ERROR: syntax error at or near "("
+SQL state: 42601
+Character: 10
+
+-- Executing query:
+select costo from (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015 ) c , 
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     else 'proceso'
+ end
+
+
+
+ERROR:  syntax error at or near "case"
+LINE 2: case when c.costo > 500 then 'Autorizado'
+        ^
+
+********** Error **********
+
+ERROR: syntax error at or near "case"
+SQL state: 42601
+Character: 145
+
+-- Executing query:
+select costo 
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     else 'proceso'
+ end
+ from (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015 )  c
+
+
+
+ERROR:  syntax error at or near "case"
+LINE 2: case when c.costo > 500 then 'Autorizado'
+        ^
+
+********** Error **********
+
+ERROR: syntax error at or near "case"
+SQL state: 42601
+Character: 15
+
+-- Executing query:
+select costo,
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     else 'proceso'
+ end
+ from (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015 )  c
+
+
+
+Total query runtime: 12 ms.
+18 rows retrieved.
+
+-- Executing query:
+select costo,
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     else 'proceso'
+ end
+ from ( 
+ select * from (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015) d
+ left join cliente cc on d.fligth_number = cc.fligth_number
+  )
+   c
+
+
+
+ERROR:  column d.fligth_number does not exist
+LINE 8:  left join cliente cc on d.fligth_number = cc.fligth_number
+                                 ^
+
+********** Error **********
+
+ERROR: column d.fligth_number does not exist
+SQL state: 42703
+Character: 296
+
+-- Executing query:
+select costo,
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     else 'proceso'
+ end
+ from ( 
+ select * from (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015) d
+ left join cliente cc on d.flight_number = cc.fligth_number
+  )
+   c
+
+
+
+ERROR:  column reference "flight_number" is ambiguous
+LINE 8:  left join cliente cc on d.flight_number = cc.fligth_number
+                                 ^
+
+********** Error **********
+
+ERROR: column reference "flight_number" is ambiguous
+SQL state: 42702
+Character: 296
+
+-- Executing query:
+select costo,
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     else 'proceso'
+ end
+ from ( 
+ select * from (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015) d
+ left join cliente cc on cc.id_cliente = d.cliente
+  )
+   c
+
+
+
+Total query runtime: 17 ms.
+18 rows retrieved.
+
+-- Executing query:
+select costo,
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     when c.genero = true then 'costo'
+     else 'proceso'
+ end
+ from ( 
+ select * from (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015) d
+ left join cliente cc on cc.id_cliente = d.cliente
+  )
+   c
+
+
+
+Total query runtime: 18 ms.
+18 rows retrieved.
+
+-- Executing query:
+select costo,
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     when c.nombres_completo LIKE '%Carlos%' then 'Activo'
+     when c.genero = true then 'Checar'
+     else 'proceso'
+ end
+ from ( 
+ select * from (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015) d
+ left join cliente cc on cc.id_cliente = d.cliente
+  )
+   c
+
+
+
+Total query runtime: 20 ms.
+18 rows retrieved.
+
+-- Executing query:
+select costo,
+case when c.costo > 500 then 'Autorizado'
+     when c.costo > 1300 then 'Verificado'
+     when c.nombres_completo LIKE '%Carlos%' then 'Activo'
+     when c.genero = true then 'Checar'
+     else 'En proceso'
+ end
+ from ( 
+ select * from (select * from venta v left join asiento a on a.flight_number = v.flight_number  where extract(year from fecha) = 2015) d
+ left join cliente cc on cc.id_cliente = d.cliente
+  )
+   c
+
+
+
+Total query runtime: 17 ms.
+18 rows retrieved.
+
+-- Executing query:
+
+ (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 26 ms.
+5 rows retrieved.
+
+-- Executing query:
+
+Select v.id_venta, w.nombres_completo (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente);
+
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+ERROR:  syntax error at or near "SELECT"
+LINE 2: Select v.id_venta, w.nombres_completo (SELECT * FROM venta v...
+                                               ^
+
+********** Error **********
+
+ERROR: syntax error at or near "SELECT"
+SQL state: 42601
+Character: 41
+
+-- Executing query:
+
+Select id_venta, nombres_completo FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente) c ;
+
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+query result with 94 rows discarded.
+
+
+
+Total query runtime: 19 ms.
+5 rows retrieved.
+
+-- Executing query:
+
+Select id_venta, nombres_completo FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente) c WHERE extract(year from fecha) = 2015;
+
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+query result with 9 rows discarded.
+
+
+
+Total query runtime: 19 ms.
+5 rows retrieved.
+
+-- Executing query:
+
+Select id_venta, nombres_completo FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente) c WHERE extract(year from fecha) = 2015;
+
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+query result with 9 rows discarded.
+
+
+
+Total query runtime: 20 ms.
+5 rows retrieved.
+
+-- Executing query:
+
+Select id_venta, nombres_completo FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente) c WHERE extract(year from fecha) = 2015 and age(fecha_naciemiento) >= 18;
+
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+ERROR:  column "fecha_naciemiento" does not exist
+LINE 2: ...) c WHERE extract(year from fecha) = 2015 and age(fecha_naci...
+                                                             ^
+
+********** Error **********
+
+ERROR: column "fecha_naciemiento" does not exist
+SQL state: 42703
+Character: 159
+
+-- Executing query:
+
+Select id_venta, nombres_completo FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente) c WHERE extract(year from fecha) = 2015 and age(fecha_nacimiento) >= 18;
+
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+ERROR:  operator does not exist: interval >= integer
+LINE 2: ...act(year from fecha) = 2015 and age(fecha_nacimiento) >= 18;
+                                                                 ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+
+********** Error **********
+
+ERROR: operator does not exist: interval >= integer
+SQL state: 42883
+Hint: No operator matches the given name and argument type(s). You might need to add explicit type casts.
+Character: 177
+
+-- Executing query:
+
+Select id_venta, nombres_completo FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente) c WHERE extract(year from fecha) = 2015 and date_part('year', age(fecha_nacimiento)) >= 18;
+
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+query result with 6 rows discarded.
+
+
+
+Total query runtime: 18 ms.
+5 rows retrieved.
+
+-- Executing query:
+
+Select id_venta, nombres_completo FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente) c WHERE extract(year from fecha) = 2015 and date_part('year', age(fecha_nacimiento)) >= 18;
+
+
+Total query runtime: 19 ms.
+6 rows retrieved.
+
+-- Executing query:
+/* 1 */
+Select id_venta, nombres_completo FROM (SELECT * FROM venta v LEFT JOIN cliente w ON v.cliente=w.id_cliente) c WHERE extract(year from fecha) = 2015 and date_part('year', age(fecha_nacimiento)) >= 18;
+
+
+Total query runtime: 20 ms.
+6 rows retrieved.
+
+-- Executing query:
+/* 2 */
+select * from cliente c left join venta v on c.id_cliente = v.cliente
+Total query runtime: 33 ms.
+211 rows retrieved.
+
+-- Executing query:
+/* 2 */
+select * from cliente c right join venta v on c.id_cliente = v.cliente
+Total query runtime: 35 ms.
+94 rows retrieved.
+
+-- Executing query:
+/* 2 */
+select * from cliente c right join venta v on c.id_cliente = v.cliente where extract(month from v.fecha) != 7
+Total query runtime: 33 ms.
+87 rows retrieved.
+
+-- Executing query:
+/* 2 */
+select * from cliente c right join venta v on c.id_cliente = v.cliente where extract(month from v.fecha) != 7 group by c.id_cliente
+ERROR:  column "v.id_venta" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 2: select * from cliente c right join venta v on c.id_cliente =...
+               ^
+
+********** Error **********
+
+ERROR: column "v.id_venta" must appear in the GROUP BY clause or be used in an aggregate function
+SQL state: 42803
+Character: 16
+
+-- Executing query:
+/* 2 */
+select * from cliente where id_cliente not in (select id_cliente from cliente c right join venta v on c.id_cliente = v.cliente where extract(month from v.fecha) == 7)
+ERROR:  operator does not exist: double precision == integer
+LINE 2: ..._cliente = v.cliente where extract(month from v.fecha) == 7)
+                                                                  ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.
+
+********** Error **********
+
+ERROR: operator does not exist: double precision == integer
+SQL state: 42883
+Hint: No operator matches the given name and argument type(s). You might need to add explicit type casts.
+Character: 170
+
+-- Executing query:
+/* 2 */
+select * from cliente where id_cliente not in (select id_cliente from cliente c right join venta v on c.id_cliente = v.cliente where extract(month from v.fecha) = 7)
+Total query runtime: 17 ms.
+143 rows retrieved.
+
+-- Executing query:
+/* 2 */
+select nombres_completo from cliente where id_cliente not in (select id_cliente from cliente c right join venta v on c.id_cliente = v.cliente where extract(month from v.fecha) = 7)
+Total query runtime: 20 ms.
+143 rows retrieved.
+
+-- Executing query:
+
+
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+Total query runtime: 20 ms.
+5 rows retrieved.
+
+-- Executing query:
+
+/* 3 */
+SELECT nombres_completo, id_venta FROM (SELECT * FROM venta v LEFT JOIN cliente c ON v.cliente=c.id_cliente )c WHERE c.nombres_completo LIKE 'G%' ;
+Total query runtime: 20 ms.
+5 rows retrieved.
+
